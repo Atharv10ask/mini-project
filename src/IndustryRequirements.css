@@ -1,0 +1,197 @@
+
+.industry-page,
+.industry-page * {
+  box-sizing: border-box;
+}
+
+.industry-page {
+  min-height: 100vh;
+  padding: 36px 20px;
+  background: #f4f7fb;
+  color: #172033;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.industry-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.industry-heading {
+  margin-bottom: 24px;
+}
+
+.industry-heading h1 {
+  margin: 0 0 8px;
+  font-size: clamp(25px, 3vw, 32px);
+  font-weight: 750;
+  letter-spacing: -0.6px;
+}
+
+.industry-heading p {
+  max-width: 680px;
+  margin: 0;
+  color: #68758a;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.industry-card {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e5eaf2;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(27, 45, 79, 0.045);
+}
+
+.industry-form {
+  display: grid;
+  gap: 10px;
+}
+
+.industry-form label {
+  margin-top: 8px;
+  color: #344054;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.industry-form input,
+.industry-form select,
+.industry-form textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
+  color: #172033;
+  background: #fff;
+  border: 1px solid #d9e0eb;
+  border-radius: 9px;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.industry-form textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.industry-form input:focus,
+.industry-form select:focus,
+.industry-form textarea:focus {
+  border-color: #3867e8;
+  box-shadow: 0 0 0 3px rgba(56, 103, 232, 0.12);
+}
+
+.industry-section-title {
+  margin: 24px 0 4px;
+  color: #172033;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.industry-skill-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  background: #f8faff;
+  border: 1px solid #e5eaf4;
+  border-radius: 12px;
+}
+
+.industry-skill-row input,
+.industry-skill-row select {
+  min-width: 0;
+}
+
+.industry-button {
+  min-height: 44px;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.industry-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.industry-button-primary {
+  margin-top: 10px;
+  color: #fff;
+  background: #315fe8;
+}
+
+.industry-button-primary:hover:not(:disabled) {
+  background: #254dcc;
+}
+
+.industry-button-secondary {
+  justify-self: start;
+  color: #3157b7;
+  background: #edf3ff;
+}
+
+.industry-button-secondary:hover {
+  background: #e0eaff;
+}
+
+.industry-button-remove {
+  min-height: 40px;
+  padding: 9px 12px;
+  color: #a12b24;
+  background: #fff3f2;
+  border: 1px solid #f4d3d0;
+}
+
+.industry-button-remove:hover {
+  background: #ffe7e5;
+}
+
+.industry-message {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  color: #24533c;
+  background: #eefaf2;
+  border: 1px solid #ccebd5;
+  border-radius: 9px;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.industry-message-error {
+  color: #a12b24;
+  background: #fff3f2;
+  border-color: #f4d3d0;
+}
+
+@media (max-width: 700px) {
+  .industry-page {
+    padding: 24px 14px;
+  }
+
+  .industry-card {
+    padding: 20px 16px;
+  }
+
+  .industry-skill-row {
+    grid-template-columns: 1fr;
+  }
+
+  .industry-button-secondary {
+    width: 100%;
+  }
+
+  .industry-button-primary {
+    width: 100%;
+  }
+}

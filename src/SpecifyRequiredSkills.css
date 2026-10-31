@@ -1,0 +1,224 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.required-skills-page {
+  min-height: 100vh;
+  padding: 35px 25px;
+  background: #f4f6fb;
+  color: #1e293b;
+  font-family: Arial, sans-serif;
+}
+
+.required-skills-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.required-skills-header {
+  margin-bottom: 25px;
+}
+
+.required-skills-header h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  color: #172554;
+}
+
+.required-skills-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.required-skills-card {
+  background: #ffffff;
+  padding: 25px;
+  margin-bottom: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+
+.required-skills-card h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.required-skills-company {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.required-skills-company div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.required-skills-company span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.required-skills-company strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.required-skills-field {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.required-skills-field label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.required-skills-page input,
+.required-skills-page select {
+  min-width: 0;
+  height: 43px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 14px;
+  outline: none;
+}
+
+.required-skills-page input:focus,
+.required-skills-page select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.required-skills-hint {
+  color: #b45309;
+  font-size: 13px;
+}
+
+.required-skills-description {
+  margin: -10px 0 20px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.required-skills-add-row {
+  display: grid;
+  grid-template-columns: 1fr 180px 120px;
+  gap: 12px;
+}
+
+.required-skills-page button {
+  border: none;
+  border-radius: 7px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.required-skills-add-row button {
+  background: #2563eb;
+  color: white;
+}
+
+.required-skills-add-row button:hover {
+  background: #1d4ed8;
+}
+
+.required-skills-list {
+  margin-top: 22px;
+}
+
+.required-skills-empty {
+  padding: 18px;
+  text-align: center;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+}
+
+.required-skill-item {
+  display: grid;
+  grid-template-columns: 1fr 180px 90px;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.required-skill-item strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.required-skill-remove {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.required-skill-remove:hover {
+  background: #fecaca;
+}
+
+.required-skills-save {
+  margin-top: 22px;
+  background: #15803d;
+  color: #ffffff;
+}
+
+.required-skills-save:hover {
+  background: #166534;
+}
+
+.required-skills-save:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.required-skills-error {
+  margin-top: 18px;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.required-skills-success {
+  margin-top: 18px;
+  color: #15803d;
+  font-size: 14px;
+}
+
+@media (max-width: 650px) {
+  .required-skills-page {
+    padding: 20px 12px;
+  }
+
+  .required-skills-card {
+    padding: 18px;
+  }
+
+  .required-skills-company {
+    grid-template-columns: 1fr;
+  }
+
+  .required-skills-add-row {
+    grid-template-columns: 1fr;
+  }
+
+  .required-skill-item {
+    grid-template-columns: 1fr;
+  }
+}

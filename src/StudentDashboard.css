@@ -1,0 +1,222 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.student-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fc;
+  font-family: 'Inter', sans-serif;
+}
+
+/* SIDEBAR */
+
+.student-sidebar {
+  width: 260px;
+  min-width: 260px;
+  min-height: 100vh;
+  padding: 30px 18px;
+  background: linear-gradient(180deg, #111c3a 0%, #182b50 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 5px 0 25px rgba(15, 23, 42, 0.08);
+}
+
+.student-sidebar h2 {
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  padding: 0 12px;
+  margin: 0 0 35px;
+}
+
+.student-sidebar button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 15px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #aebbd3;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.student-sidebar button:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.student-sidebar button.active {
+  background: linear-gradient(90deg, #3478f6, #5594ff);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(52, 120, 246, 0.25);
+}
+
+/* LOGOUT */
+
+.student-sidebar .student-logout {
+  margin-top: auto;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ff9c9c;
+  justify-content: center;
+}
+
+.student-sidebar .student-logout:hover {
+  background: #dc2626;
+  color: white;
+}
+
+/* MAIN CONTENT */
+
+.student-main {
+  flex: 1;
+  min-width: 0;
+  padding: 38px;
+  overflow-x: auto;
+}
+
+/* WELCOME SECTION */
+
+.student-welcome {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.student-welcome h1 {
+  color: #172554;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+.student-welcome > p {
+  color: #7b879c;
+  font-size: 15px;
+  margin-bottom: 35px;
+}
+
+/* DASHBOARD CARDS */
+
+.student-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.student-card {
+  position: relative;
+  min-height: 170px;
+  padding: 27px;
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 17px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(31, 48, 84, 0.035);
+}
+
+.student-card::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #eff5ff;
+  right: -35px;
+  bottom: -45px;
+  transition: 0.3s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-6px);
+  border-color: #b8d1ff;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.10);
+}
+
+.student-card:hover::after {
+  transform: scale(1.35);
+}
+
+.student-card h3 {
+  position: relative;
+  z-index: 1;
+  color: #1e3a8a;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.student-card p {
+  position: relative;
+  z-index: 1;
+  color: #8490a5;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .student-sidebar {
+    width: 220px;
+    min-width: 220px;
+  }
+
+  .student-main {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 650px) {
+  .student-layout {
+    flex-direction: column;
+  }
+
+  .student-sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .student-sidebar h2 {
+    margin-bottom: 15px;
+  }
+
+  .student-sidebar button {
+    padding: 11px;
+  }
+
+  .student-sidebar .student-logout {
+    margin-top: 10px;
+  }
+
+  .student-main {
+    padding: 20px;
+  }
+
+  .student-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .student-welcome h1 {
+    font-size: 24px;
+  }
+}

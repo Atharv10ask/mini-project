@@ -1,0 +1,286 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.profile-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #172b4d;
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  min-height: 76px;
+  padding: 18px 7%;
+  background: #ffffff;
+  border-bottom: 1px solid #e3eaf3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: 800;
+  color: #173d72;
+}
+
+.brand span {
+  color: #2684ff;
+}
+
+.header-label {
+  color: #536780;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-container {
+  max-width: 1000px;
+  width: 92%;
+  margin: 40px auto;
+  padding-bottom: 40px;
+}
+
+.profile-heading {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  color: #2878d0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.profile-heading h1 {
+  margin: 10px 0;
+  font-size: 34px;
+  color: #173d72;
+}
+
+.profile-heading > p:last-child {
+  color: #65758b;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.profile-card {
+  background: #ffffff;
+  border: 1px solid #e2e9f2;
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: 0 5px 20px rgba(24, 55, 95, 0.04);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.section-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #eaf2ff;
+  color: #2467c5;
+  font-weight: 800;
+}
+
+.section-heading h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  color: #173d72;
+}
+
+.section-heading p {
+  margin: 0;
+  font-size: 13px;
+  color: #77869a;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 13px;
+  color: #354b68;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid #d6dfeb;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #243b58;
+  font-size: 14px;
+}
+
+.field input::placeholder {
+  color: #a0adbd;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #3485e8;
+  box-shadow: 0 0 0 3px rgba(52, 133, 232, 0.12);
+}
+
+.skill-entry {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.add-skill-btn,
+.save-profile-btn {
+  border: none;
+  border-radius: 8px;
+  background: #246bce;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-skill-btn {
+  min-height: 46px;
+  padding: 0 18px;
+  white-space: nowrap;
+}
+
+.add-skill-btn:hover,
+.save-profile-btn:hover {
+  background: #174f9e;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.empty-skills {
+  color: #8593a5;
+  font-size: 13px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #d9e7fa;
+  background: #f2f7ff;
+  border-radius: 9px;
+}
+
+.skill-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.skill-item strong {
+  font-size: 13px;
+  color: #234d85;
+}
+
+.skill-item span {
+  font-size: 11px;
+  color: #687c96;
+}
+
+.remove-skill {
+  border: none;
+  background: transparent;
+  color: #d04444;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.profile-message {
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: #eaf3ff;
+  color: #174f91;
+  font-size: 14px;
+}
+
+.profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.profile-actions p {
+  font-size: 12px;
+  color: #77869a;
+}
+
+.save-profile-btn {
+  padding: 15px 24px;
+  font-size: 14px;
+}
+
+@media (max-width: 650px) {
+  .profile-header {
+    padding: 18px 5%;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .profile-container {
+    margin-top: 28px;
+  }
+
+  .profile-heading h1 {
+    font-size: 28px;
+  }
+
+  .profile-card {
+    padding: 20px 16px;
+  }
+
+  .form-grid,
+  .skill-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .save-profile-btn {
+    width: 100%;
+  }
+}
