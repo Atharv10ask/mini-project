@@ -69,7 +69,7 @@ router.get("/skill-requirements", async (req, res) => {
     }
 });
 
-// 3. SKILL GAP ANALYSIS: Student vs SkillRequirement
+// 3. SKILL GAP ANALYSIS: Student vs SkillRequirement or Opportunity
 router.get("/skill-gap/:email/:requirementId", async (req, res) => {
     try {
         const { email, requirementId } = req.params;
@@ -85,9 +85,28 @@ router.get("/skill-gap/:email/:requirementId", async (req, res) => {
             return res.status(404).json({ message: "Student profile not found. Please create your profile first." });
         }
 
-        const requirement = await SkillRequirement.findById(requirementId);
-        if (!requirement) {
-            return res.status(404).json({ message: "Skill requirement not found" });
+        // Check SkillRequirement collection first, then Opportunity collection
+        let requirement = await SkillRequirement.findById(requirementId);
+        let reqCompany = "";
+        let reqType = "";
+
+        if (requirement) {
+            reqCompany = requirement.company;
+            reqType = requirement.type;
+        } else {
+            const opp = await Opportunity.findById(requirementId);
+            if (!opp) {
+                return res.status(404).json({ message: "Requirement or Opportunity not found" });
+            }
+            requirement = {
+                _id: opp._id,
+                title: opp.title,
+                skills: opp.requiredSkills,
+                company: opp.companyName,
+                type: opp.type
+            };
+            reqCompany = opp.companyName;
+            reqType = opp.type;
         }
 
         const studentSkills = Array.isArray(student.skills) ? student.skills : [];
@@ -105,9 +124,11 @@ router.get("/skill-gap/:email/:requirementId", async (req, res) => {
             const stSkill = studentSkills.find((s) => normalizeSkillName(s) === reqName);
 
             if (!stSkill) {
+                const reqLevel = getSkillLevel(reqSkill);
                 missingSkills.push({
                     skillName: reqSkill.skillName || reqSkill.name,
-                    requiredLevel: getSkillLevel(reqSkill)
+                    level: reqLevel,
+                    requiredLevel: reqLevel
                 });
                 return;
             }
@@ -122,12 +143,14 @@ router.get("/skill-gap/:email/:requirementId", async (req, res) => {
                 proficiencyGaps.push({
                     skillName: reqSkill.skillName || reqSkill.name,
                     studentLevel: stLevel,
+                    currentLevel: stLevel,
                     requiredLevel: reqLevel
                 });
                 totalScore += Math.round((stRank / reqRank) * 100);
             } else {
                 matchedSkills.push({
                     skillName: reqSkill.skillName || reqSkill.name,
+                    level: stLevel,
                     studentLevel: stLevel,
                     requiredLevel: reqLevel
                 });
@@ -137,14 +160,27 @@ router.get("/skill-gap/:email/:requirementId", async (req, res) => {
 
         const matchPercentage = requiredSkills.length > 0 ? Math.round(totalScore / requiredSkills.length) : 0;
 
+        const improvementSkills = proficiencyGaps.map(g => ({
+            skillName: g.skillName,
+            currentLevel: g.studentLevel,
+            requiredLevel: g.requiredLevel,
+            level: `Current: ${g.studentLevel} → Required: ${g.requiredLevel}`
+        }));
+
         res.status(200).json({
             studentName: student.fullName,
+            requirement: {
+                title: requirement.title,
+                company: reqCompany,
+                type: reqType
+            },
             requirementTitle: requirement.title,
-            company: requirement.company,
+            company: reqCompany,
             totalRequiredSkills: requiredSkills.length,
             matchPercentage,
             matchedSkills,
             missingSkills,
+            improvementSkills,
             proficiencyGaps
         });
     } catch (error) {
