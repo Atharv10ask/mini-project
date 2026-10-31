@@ -1,9 +1,11 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 
 function Register() {
+  const navigate = useNavigate();
   const [role, setRole] = useState("Student");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -16,6 +18,21 @@ function Register() {
   const signup = async (e) => {
     e.preventDefault();
     setMessage("");
+
+    if (!username.trim()) {
+      setMessage("Please enter your name or organization name.");
+      return;
+    }
+
+    if (!email.trim()) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 4) {
+      setMessage("Password must contain at least 4 characters.");
+      return;
+    }
 
     if (password !== confirmPassword) {
       setMessage("Passwords do not match.");
@@ -33,8 +50,8 @@ function Register() {
       const response = await axios.post(
         "http://localhost:3000/signup",
         {
-          username,
-          email,
+          username: username.trim(),
+          email: email.trim().toLowerCase(),
           password,
           confirmPassword,
           role,
@@ -42,14 +59,24 @@ function Register() {
       );
 
       setMessage(
-        response.data.message || "Account created successfully!"
+        (response.data.message || "Account created successfully!") + " Redirecting to login..."
       );
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (error) {
-      setMessage(
-        error.response?.data?.message ||
-        error.response?.data?.msg ||
-        "Registration failed. Please check your backend."
-      );
+      const data = error.response?.data;
+      if (data?.errors && Array.isArray(data.errors) && data.errors.length > 0) {
+        const errorList = data.errors.map((err) => err.message).filter(Boolean).join(". ");
+        setMessage(errorList || data.message || "Invalid registration details.");
+      } else {
+        setMessage(
+          data?.message ||
+          data?.msg ||
+          "Registration failed. Please check your backend connection."
+        );
+      }
     } finally {
       setLoading(false);
     }
@@ -210,6 +237,15 @@ function Register() {
               >
                 <span className="role-symbol">▥</span>
                 Industry
+              </button>
+
+              <button
+                type="button"
+                className={role === "Admin" ? "role-tab active" : "role-tab"}
+                onClick={() => setRole("Admin")}
+              >
+                <span className="role-symbol">⚙</span>
+                Admin
               </button>
             </div>
 

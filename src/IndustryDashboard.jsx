@@ -115,9 +115,21 @@ function IndustryDashboard() {
       path: "/review-applications",
     },
     {
+      icon: "🎯",
+      title: "Find Suitable Candidates",
+      description: "Match student skills with your opportunities.",
+      path: "/find-candidates",
+    },
+    {
+      icon: "⚡",
+      title: "Specify Required Skills",
+      description: "Customize required skills and levels for postings.",
+      path: "/specify-required-skills",
+    },
+    {
       icon: "◎",
-      title: "Skill Requirements",
-      description: "Specify skills required by your industry.",
+      title: "Industry Skill Requirements",
+      description: "Specify general skill requirements for your industry.",
       path: "/industry-requirements",
     },
   ];
@@ -178,6 +190,22 @@ function IndustryDashboard() {
           >
             <span>♙</span>
             Applications
+          </button>
+
+          <button
+            className="industry-nav-link"
+            onClick={() => navigate("/find-candidates")}
+          >
+            <span>🎯</span>
+            Find Candidates
+          </button>
+
+          <button
+            className="industry-nav-link"
+            onClick={() => navigate("/specify-required-skills")}
+          >
+            <span>⚡</span>
+            Specify Skills
           </button>
 
           <button

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./StudentProfile.css";
 
@@ -23,6 +23,45 @@ function StudentProfile() {
   const [message, setMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    let savedEmail = localStorage.getItem("email") || "";
+    if (!savedEmail) {
+      try {
+        const u = JSON.parse(localStorage.getItem("user") || "{}");
+        if (u.email) savedEmail = u.email;
+      } catch (e) {}
+    }
+
+    if (savedEmail) {
+      setProfile((prev) => ({ ...prev, email: savedEmail }));
+      axios
+        .get(`http://localhost:3000/student-profile?email=${encodeURIComponent(savedEmail)}`)
+        .then((res) => {
+          if (res.data) {
+            const data = res.data;
+            setProfile({
+              fullName: data.fullName || "",
+              email: data.email || savedEmail,
+              phone: data.phone || "",
+              college: data.college || "",
+              degree: data.degree || "",
+              branch: data.branch || "",
+              graduationYear: data.graduationYear ? String(data.graduationYear) : "",
+              careerGoal: data.careerGoal || "",
+              github: data.github || "",
+              linkedin: data.linkedin || ""
+            });
+            if (Array.isArray(data.skills) && data.skills.length > 0) {
+              setSkills(data.skills);
+            }
+          }
+        })
+        .catch(() => {
+          // If no profile created yet, just keep the prefilled email
+        });
+    }
+  }, []);
 
   const handleChange = (e) => {
     setProfile({

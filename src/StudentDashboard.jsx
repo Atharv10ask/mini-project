@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import StudentProfile from "./StudentProfile";
-import ExploreOpportunities from "./ExploreOpportunities";
+import Explore from "./Explore";
 import SkillGapAnalysis from "./SkillGapAnalysis";
 import Notifications from "./Notifications";
 
@@ -27,7 +27,7 @@ function StudentDashboard() {
         return <StudentProfile />;
 
       case "Explore Opportunities":
-        return <ExploreOpportunities />;
+        return <Explore />;
 
       case "Skill Gap Analysis":
         return <SkillGapAnalysis />;

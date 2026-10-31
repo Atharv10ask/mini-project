@@ -84,19 +84,13 @@ function FindCandidates() {
             : [];
 
         // Only show opportunities belonging to this company.
-        const companyOpportunities = allOpportunities.filter(
-          (item) => {
-            const postedCompany = String(
-              item.companyName || item.company || ""
-            )
-              .trim()
-              .toLowerCase();
-
-            return (
-              postedCompany === String(name).trim().toLowerCase()
-            );
+        const companyOpportunities = allOpportunities.filter((item) => {
+          if (item.companyEmail && email && item.companyEmail.trim().toLowerCase() === email.trim().toLowerCase()) {
+            return true;
           }
-        );
+          const postedCompany = String(item.companyName || item.company || "").trim().toLowerCase();
+          return name && postedCompany === String(name).trim().toLowerCase();
+        });
 
         setOpportunities(companyOpportunities);
 

@@ -116,6 +116,35 @@ function AdminDashboard() {
     }
   ];
 
+  async function handleDeleteRecord(record) {
+    if (!window.confirm("Are you sure you want to delete this record?")) return;
+    try {
+      let endpoint = "";
+      if (activeTab === "Students") endpoint = `${API}/admin/users/${record._id}`;
+      else if (activeTab === "Companies") endpoint = `${API}/admin/companies/${record._id}`;
+      else if (activeTab === "Opportunities") endpoint = `${API}/admin/opportunities/${record._id}`;
+      else if (activeTab === "Applications") endpoint = `${API}/admin/applications/${record._id}`;
+      else if (activeTab === "Skill Requirements") endpoint = `${API}/admin/requirements/${record._id}`;
+
+      if (endpoint) {
+        const res = await fetch(endpoint, { method: "DELETE" });
+        if (res.ok) {
+          alert("Record deleted successfully.");
+          loadDashboard();
+        } else {
+          alert("Failed to delete record.");
+        }
+      }
+    } catch (e) {
+      alert("Error deleting record: " + e.message);
+    }
+  }
+
+  function handleLogout() {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  }
+
   function displayValue(value) {
     if (value === null || value === undefined || value === "") {
       return "—";
@@ -237,7 +266,9 @@ function AdminDashboard() {
 
         <div className="admin-sidebar-bottom">
           <button onClick={loadDashboard}>↻ Refresh Data</button>
-          <button onClick={() => navigate("/")}>← Back to Home</button>
+          <button onClick={handleLogout} style={{ marginTop: "8px", background: "#f87171" }}>
+            Logout
+          </button>
         </div>
       </aside>
 
@@ -367,6 +398,7 @@ function AdminDashboard() {
                           {getColumns().map(([label]) => (
                             <th key={label}>{label}</th>
                           ))}
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -378,6 +410,22 @@ function AdminDashboard() {
                                 {displayValue(record[field])}
                               </td>
                             ))}
+                            <td>
+                              <button
+                                style={{
+                                  background: "#ef4444",
+                                  color: "white",
+                                  border: "none",
+                                  borderRadius: "4px",
+                                  padding: "4px 8px",
+                                  cursor: "pointer",
+                                  fontSize: "12px"
+                                }}
+                                onClick={() => handleDeleteRecord(record)}
+                              >
+                                Delete
+                              </button>
+                            </td>
                           </tr>
                         ))}
                       </tbody>
